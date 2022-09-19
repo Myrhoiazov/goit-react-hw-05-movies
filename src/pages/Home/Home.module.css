@@ -1,0 +1,50 @@
+.hero {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+
+  padding: 150px 0;
+
+  background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/bgQUBbZ14hfeb975yZ2YzTnAwen.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.img {
+  display: block;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 0;
+  padding: 20px 0;
+
+  list-style: none;
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 60px;
+  padding-left: 50px;
+  text-transform: uppercase;
+
+  color: white;
+}
+
+.text{
+  max-width: 700px;
+  padding-left: 50px;
+  color: white;
+
+  font-size: 30px;
+  font-weight: 400;
+
+  margin: 0;
+
+}

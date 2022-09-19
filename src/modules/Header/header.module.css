@@ -1,0 +1,32 @@
+.header {
+  background-color: rgb(3 37 65);
+}
+
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 0;
+  margin-right: 100px;
+}
+
+.item {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px;
+
+  font-size: 14px;
+  color: white;
+  border-radius: 8px;
+}
+
+.item.active {
+  color: white;
+  background-color: rgb(255, 174, 0);
+  text-decoration: none;
+}
