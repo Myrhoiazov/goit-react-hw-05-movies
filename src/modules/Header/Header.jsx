@@ -11,7 +11,7 @@ const Header = () => {
       <header className={s.header}>
         <div className={s.wrapper}>
           <nav className={s.nav}>
-            <NavLink to="/home" className={getActiveClassName}>
+            <NavLink to="/" end className={getActiveClassName}>
               Home
             </NavLink>
             <NavLink to="/movies" className={getActiveClassName}>
@@ -22,7 +22,9 @@ const Header = () => {
       </header>
 
       <main>
+        <div className={s.container}>
         <Outlet />
+        </div>
       </main>
     </>
   );

@@ -44,7 +44,7 @@ const Home = () => {
             <Link key={film.id}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-                width="400"
+                width="350"
                 alt={film.title}
               />
               <p>{film.original_title || film.original_name}</p>

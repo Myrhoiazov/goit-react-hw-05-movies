@@ -1,0 +1,37 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  margin: 0;
+  padding: 40px 0;
+  list-style: none;
+
+  gap: 10px;
+}
+
+.thumb {
+  overflow: hidden;
+  border-radius: 5px;
+  width: 170px;
+  height: 255px;
+
+  background-color: grey;
+}
+
+.img {
+  display: block;
+  object-fit: cover;
+}
+
+.title{
+  max-width: 170px;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.text{
+  font-size: 12px;
+  max-width: 170px;
+}

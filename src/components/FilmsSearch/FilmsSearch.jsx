@@ -30,8 +30,8 @@ const FilmsSearch = ({onSubmit}) => {
           <input
             className={style.input}
             type="text"
-            autoComplete="off"
-            autoFocus="off"
+            // autoComplete="off"
+            // autoFocus="off"
             name="name"
             value={value}
             placeholder="Search movies"

@@ -30,3 +30,10 @@
   background-color: rgb(255, 174, 0);
   text-decoration: none;
 }
+
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
