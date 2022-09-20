@@ -1,43 +1,68 @@
-import { useState } from 'react';
+import FilmsSearch from '../../components/FilmsSearch/FilmsSearch';
+import { useState, useCallback, useEffect } from 'react';
+import Loader from 'components/Loader';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import style from './Movies.module.css';
+import s from './Movies.module.css';
 
-export const Movies = () => {
-  const [value, setValue] = useState('');
+const Movies = () => {
+  const [query, setQuery] = useState('');
+  const [searchFilms, setSearchFilms] = useState([]);
+  const [loader, setLoader] = useState(false);
 
-  const handleChangeValue = event => {
-    setValue(event.target.value.trim());
-  };
-
-  const onSubmitValue = ev => {
-    ev.preventDefault();
-
-    if (value === '') {
-      return toast('Ведите свой запрос');
+  const serviceApi = useCallback(async () => {
+    try {
+      setLoader(true);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=53f28f10fb3650af7c7f4f04a387344f&language=en-US&page=1&include_adult=false&query=${query}`
+      );
+      console.log(response.data);
+      setSearchFilms(response.data.results);
+    } catch (error) {
+      toast.error('Что то пошло не так :(');
+    } finally {
+      setLoader(false);
     }
+  }, [query]);
 
-    // onSubmit(value);
+  const handelSearchValue = query => {
+    setQuery(query);
   };
+
+  useEffect(() => {
+    if (!query) {
+      return;
+    }
+    serviceApi();
+  }, [query]);
 
   return (
-    <header className={style.searchbar}>
-      <form className="form" onSubmit={onSubmitValue}>
-        <button type="submit" className={style.btn}>
-          <span className="button-label">Search</span>
-        </button>
-
-        <input
-          className={style.input}
-          type="text"
-          autoComplete="off"
-          autoFocus="off"
-          name="name"
-          value={value}
-          placeholder="Search images and photos"
-          onChange={handleChangeValue}
-        />
-      </form>
-    </header>
-  )};
+    <>
+      <FilmsSearch onSubmit={handelSearchValue} />
+      {loader && <Loader />}
+      {
+        <ul className={s.list}>
+          {searchFilms.map(film => (
+            <Link className={s.link} key={film.id}>
+              <div className={s.wrapper}>
+                <img
+                  className={s.image}
+                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                  width="200"
+                  alt={film.title}
+                />
+              </div>
+              <p className={s.title}>
+                Title: {film.original_title || film.original_name}
+              </p>
+              <p className={s.text}>Popularity: {film.popularity}</p>
+            </Link>
+          ))}
+        </ul>
+      }
+    </>
+  );
+};
 
 export default Movies;

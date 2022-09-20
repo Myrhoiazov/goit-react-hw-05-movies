@@ -5,7 +5,7 @@ import s from './Home.module.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export const Home = () => {
+const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
 

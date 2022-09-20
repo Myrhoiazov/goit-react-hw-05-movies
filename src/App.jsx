@@ -7,7 +7,7 @@ import Movies from './pages/Movies';
 
 export const App = () => {
   return (
-    <BrowserRouter basename='goit-react-hw-05-movies/'>
+    <BrowserRouter basename="goit-react-hw-05-movies/">
       <Routes>
         <Route path="/" element={<Header />}>
           <Route path="/home" element={<Home />} />
