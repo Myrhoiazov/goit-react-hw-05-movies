@@ -32,7 +32,7 @@ const Cast = () => {
 
 
   if (!cast.length) {
-    return <p className={s.text}>Sorry</p>;
+    return <p className={s.title}>Sorry</p>;
   }
 
   return (

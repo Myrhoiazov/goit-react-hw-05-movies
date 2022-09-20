@@ -19,7 +19,6 @@ const Movies = () => {
       const response = await axios.get(
         `https://api.themoviedb.org/3/search/movie?api_key=53f28f10fb3650af7c7f4f04a387344f&language=en-US&page=1&include_adult=false&query=${query}`
       );
-      console.log(response.data);
       setSearchFilms(response.data.results);
     } catch (error) {
       toast.error('Что то пошло не так :(');
@@ -37,7 +36,7 @@ const Movies = () => {
       return;
     }
     serviceApi();
-  }, [query]);
+  }, [query, serviceApi]);
 
   return (
     <>
