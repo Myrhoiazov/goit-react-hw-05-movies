@@ -2,13 +2,16 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-
-  padding: 150px 0;
+  padding: 60px 0;
+  height: 200px;
 
   background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/bgQUBbZ14hfeb975yZ2YzTnAwen.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 .img {
@@ -21,16 +24,14 @@
   justify-content: center;
 
   gap: 10px;
-
   margin: 0;
   padding: 20px 0;
-
   list-style: none;
 }
 
 .title {
   margin-bottom: 10px;
-  font-size: 60px;
+  font-size: 48px;
   padding-left: 50px;
   text-transform: uppercase;
 
@@ -42,7 +43,7 @@
   padding-left: 50px;
   color: white;
 
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 400;
 
   margin: 0;

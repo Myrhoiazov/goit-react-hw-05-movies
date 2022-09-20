@@ -9,8 +9,6 @@ export const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  console.log();
-
   const serviceApi = useCallback(async () => {
     try {
       setLoader(true);
@@ -27,9 +25,7 @@ export const Home = () => {
 
   useEffect(() => {
     serviceApi();
-  }, []);
-
-  console.log(films);
+  }, [serviceApi]);
 
   return (
     <>
