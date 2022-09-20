@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './modules/Header';
@@ -19,6 +19,7 @@ export const App = () => {
             <Route path='cast' element={<Cast/>}/>
             <Route path='reviews' element={<Reviews/>}/>
           </Route>
+          <Route path='*' element={<Navigate to='/'/>}/>
         </Route>
       </Routes>
       <ToastContainer />

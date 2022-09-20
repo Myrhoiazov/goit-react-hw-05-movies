@@ -31,6 +31,14 @@ const Movies = () => {
     setQuery(query);
   };
 
+  
+
+  // const filterFilms = ()=>{
+  //   return searchFilms.filter(el=> el.includes(query))
+  // }
+
+  // const resultFilter = filterFilms()
+
   useEffect(() => {
     if (!query) {
       return;

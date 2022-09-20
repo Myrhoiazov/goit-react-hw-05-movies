@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet} from 'react-router-dom';
 import Loader from '../../components/Loader';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,6 +9,7 @@ const AboutFilms = () => {
   const { moviesId } = useParams();
   const [film, setFilm] = useState({});
   const [loader, setLoader] = useState(false);
+  // const navigate = useNavigate();
 
   const serviceApi = useCallback(async () => {
     try {
@@ -16,8 +17,10 @@ const AboutFilms = () => {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${moviesId}?api_key=53f28f10fb3650af7c7f4f04a387344f&language=en-US`
       );
+
       setFilm(response.data);
     } catch (error) {
+      // navigate(`/movies/${moviesId}`)
       toast.error('Что то пошло не так :(');
     } finally {
       setLoader(false);
