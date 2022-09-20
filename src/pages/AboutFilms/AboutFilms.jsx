@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useParams, Link, Outlet} from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation} from 'react-router-dom';
 import Loader from '../../components/Loader';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,7 +9,8 @@ const AboutFilms = () => {
   const { moviesId } = useParams();
   const [film, setFilm] = useState({});
   const [loader, setLoader] = useState(false);
-  // const navigate = useNavigate();
+  const location = useLocation()
+  console.log(location);
 
   const serviceApi = useCallback(async () => {
     try {
@@ -43,6 +44,7 @@ const AboutFilms = () => {
       {
         <section className="">
           <div className={s.container}>
+            <Link to={location.state?.from ?? '/movies'} > go back</Link>
             <div className={s.about}>
               <img
                 alt={film.title}
@@ -62,10 +64,10 @@ const AboutFilms = () => {
             </div>
             <ul>
               <li>
-                <Link to="cast">Cast</Link>
+                <Link to="cast" state={location.state?.from ? location.state : null}>Cast</Link>
               </li>
               <li>
-                <Link to="reviews">Reviews</Link>
+                <Link to="reviews" state={location.state?.from ? location.state : null}>Reviews</Link>
               </li>
             </ul>
             <Outlet />

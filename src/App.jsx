@@ -10,7 +10,7 @@ import Reviews from 'pages/AboutFilms/Reviews';
 
 export const App = () => {
   return (
-    <BrowserRouter basename="goit-react-hw-05-movies/">
+    <BrowserRouter basename="goit-react-hw-05-movies">
       <Routes>
         <Route path="/" element={<Header />}>
           <Route index element={<Home />} />

@@ -2,16 +2,17 @@ import FilmsSearch from '../../components/FilmsSearch/FilmsSearch';
 import { useState, useCallback, useEffect } from 'react';
 import Loader from 'components/Loader';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import s from './Movies.module.css';
-
-// https://api.themoviedb.org/3/movie/${movie_id}?api_key=53f28f10fb3650af7c7f4f04a387344f&language=en-US
 
 const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
   const [loader, setLoader] = useState(false);
+  const location = useLocation()
+
+  console.log(location);
 
   const serviceApi = useCallback(async () => {
     try {
@@ -31,14 +32,6 @@ const Movies = () => {
     setQuery(query);
   };
 
-  
-
-  // const filterFilms = ()=>{
-  //   return searchFilms.filter(el=> el.includes(query))
-  // }
-
-  // const resultFilter = filterFilms()
-
   useEffect(() => {
     if (!query) {
       return;
@@ -53,7 +46,7 @@ const Movies = () => {
       {
         <ul className={s.list}>
           {searchFilms.map(film => (
-            <Link className={s.link} key={film.id} to={`${film.id}`}>
+            <Link className={s.link} key={film.id} to={`/movies/${film.id}`} state={{from: location}}>
               <div className={s.wrapper}>
                 <img
                   className={s.image}
