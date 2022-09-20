@@ -10,6 +10,7 @@ const Movies = () => {
   const [query, setQuery] = useState('');
   const [searchFilms, setSearchFilms] = useState([]);
   const [loader, setLoader] = useState(false);
+
   const location = useLocation()
 
   console.log(location);
@@ -32,6 +33,8 @@ const Movies = () => {
     setQuery(query);
   };
 
+
+
   useEffect(() => {
     if (!query) {
       return;
@@ -46,7 +49,7 @@ const Movies = () => {
       {
         <ul className={s.list}>
           {searchFilms.map(film => (
-            <Link className={s.link} key={film.id} to={`/movies/${film.id}`} state={{from: location}}>
+            <Link  className={s.link} key={film.id} to={`/movies/${film.id}`} state={{from: location}}>
               <div className={s.wrapper}>
                 <img
                   className={s.image}
@@ -61,6 +64,7 @@ const Movies = () => {
             </Link>
           ))}
         </ul>
+
       }
     </>
   );

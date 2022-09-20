@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
+// import Modal from '../../components/Modal';
 import s from './Home.module.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,8 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const [filmCard, setFilmsCard] = useState({});
 
   const serviceApi = useCallback(async () => {
     try {
@@ -22,6 +25,14 @@ const Home = () => {
       setLoader(false);
     }
   }, []);
+
+  // const isShowModal = ev => {
+  //   setFilmsCard(ev.target.src);
+  //   setShowModal(state => !state);
+
+  //   console.log(ev.currentTarget.src);
+  //   // setImgQuery(crs);
+  // };
 
   useEffect(() => {
     serviceApi();
@@ -41,7 +52,7 @@ const Home = () => {
       {
         <ul className={s.list}>
           {films.map(film => (
-            <Link key={film.id}>
+            <Link key={film.id} >
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
                 width="350"
@@ -52,6 +63,22 @@ const Home = () => {
           ))}
         </ul>
       }
+
+      {/* {showModal && (
+        <Modal onClose={isShowModal}>
+          <img
+            src={filmCard}
+            alt=''
+            style={{
+              display: 'block',
+              objectFit: 'cover',
+              maxWidth: '100%',
+              width: '100%',
+              height: '100%',
+            }}
+          />
+        </Modal>
+      )} */}
     </>
   );
 };

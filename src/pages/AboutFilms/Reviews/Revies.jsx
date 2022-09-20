@@ -35,7 +35,7 @@ const Reviews = () => {
     <ul className={s.list}>
       {reviews.map(rev => (
         <li key={rev.created_at}>
-          <p className={s.text}>Character:{rev.content}</p>
+          <p className={s.text}> <span className={s.text__accent}>Character:</span>{rev.content}</p>
         </li>
       ))}
     </ul>

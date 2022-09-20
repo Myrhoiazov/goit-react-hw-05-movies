@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useParams, Link, Outlet, useLocation} from 'react-router-dom';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,7 +9,7 @@ const AboutFilms = () => {
   const { moviesId } = useParams();
   const [film, setFilm] = useState({});
   const [loader, setLoader] = useState(false);
-  const location = useLocation()
+  const location = useLocation();
   console.log(location);
 
   const serviceApi = useCallback(async () => {
@@ -44,7 +44,10 @@ const AboutFilms = () => {
       {
         <section className="">
           <div className={s.container}>
-            <Link to={location.state?.from ?? '/movies'} > go back</Link>
+            <Link to={location.state?.from ?? '/movies'} className={s.button}>
+              {' '}
+              go back
+            </Link>
             <div className={s.about}>
               <img
                 alt={film.title}
@@ -62,12 +65,24 @@ const AboutFilms = () => {
                 <p>{genres}</p>
               </div>
             </div>
-            <ul>
-              <li>
-                <Link to="cast" state={location.state?.from ? location.state : null}>Cast</Link>
+            <ul className={s.data__review}>
+              <li className={s.data__item}>
+                <Link
+                  className={s.title}
+                  to="cast"
+                  state={location.state?.from ? location.state : null}
+                >
+                  Cast
+                </Link>
               </li>
-              <li>
-                <Link to="reviews" state={location.state?.from ? location.state : null}>Reviews</Link>
+              <li className={s.data__item}>
+                <Link
+                  className={s.title}
+                  to="reviews"
+                  state={location.state?.from ? location.state : null}
+                >
+                  Reviews
+                </Link>
               </li>
             </ul>
             <Outlet />

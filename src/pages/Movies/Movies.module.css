@@ -64,11 +64,14 @@
   text-decoration: none;
 }
 
-.image{
+.image {
   display: block;
+  object-fit: cover;
+  height: 100%;
 }
 
 .wrapper {
   border-radius: 5px;
   overflow: hidden;
+  height: 345px;
 }

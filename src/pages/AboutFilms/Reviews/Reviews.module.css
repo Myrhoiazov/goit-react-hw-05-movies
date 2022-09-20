@@ -1,0 +1,16 @@
+.list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.text{
+  line-height: 1.4;
+}
+
+.text__accent{
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: 20px;
+  padding-left: 20px;
+}

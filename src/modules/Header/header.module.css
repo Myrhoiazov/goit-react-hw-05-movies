@@ -16,13 +16,17 @@
 }
 
 .item {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
   text-decoration: none;
+  width: 70px;
   padding: 10px;
 
   font-size: 14px;
   color: white;
   border-radius: 8px;
+
+  transition: all ease-in 150ms;
 }
 
 .item.active {
@@ -31,8 +35,7 @@
   text-decoration: none;
 }
 
-
-.container{
+.container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
