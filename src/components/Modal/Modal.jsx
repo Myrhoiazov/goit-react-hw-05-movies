@@ -10,8 +10,6 @@ const Modal = ({ onClose, children }) => {
     }
   };
 
-  console.log(onClose);
-
   const handleCloseBackdrop = e => {
     if (e.target === e.currentTarget) {
       onClose();

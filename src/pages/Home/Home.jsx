@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal';
@@ -8,9 +9,10 @@ import axios from 'axios';
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [filmCard, setFilmsCard] = useState('');
+  const [filmCard, setFilmsCard] = useState({});
+  const [isShow, setIsShow] = useState(false);
 
-  console.log(films);
+  const location = useLocation()
 
   const serviceApi = useCallback(async () => {
     try {
@@ -26,13 +28,15 @@ const Home = () => {
     }
   }, []);
 
-  const isShowModal = ev => {
-    setFilmsCard(ev);
+  const isShowModal = (film) => {
+    setFilmsCard(film);
+    setIsShow(state => !state);
+    console.log(film);
   };
 
   useEffect(() => {
     serviceApi();
-  }, [serviceApi]);
+  }, [serviceApi, filmCard]);
 
   return (
     <>
@@ -48,46 +52,38 @@ const Home = () => {
       {
         <ul className={s.list}>
           {films.map(film => (
-            <li
-              key={film.id}
-              onClick={() =>
-                isShowModal(
-                  `https://image.tmdb.org/t/p/w500${film.poster_path}`
-                )
-              }
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
-                width="350"
+            <li key={film.id} onClick={() => isShowModal(film)}>
+              <div className={s.list__thumb}>
+              <img className={s.list__img}
+                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                width="200"
                 alt={film.title}
               />
-              <p>{film.original_title || film.original_name}</p>
+              </div>
+              <p className={s.list__title}>{film.original_title || film.original_name}</p>
             </li>
           ))}
         </ul>
       }
 
-      {filmCard && (
+      {isShow && (
         <Modal onClose={isShowModal}>
           <article>
             <div className="container">
               <div className={s.card}>
-                <div className="thumb__photo">
-                  <img className='photo'
-                    src={filmCard}
+                <div className={s.thumb__photo}>
+                  <img
+                    className={s.photo}
+                    src={`https://image.tmdb.org/t/p/w500${filmCard.poster_path}`}
                     alt=""
-                    style={{
-                      display: 'block',
-                      objectFit: 'cover',
-                      // maxWidth: '100%',
-                      // width: '100%',
-                      // height: '100%',
-                    }}
                   />
                 </div>
-                <div className='data__content'>
-                  <h1>Title</h1>
-                  <p>text</p>
+                <div className={s.data__content}>
+                  <h1 className={s.modal__title}>{filmCard.name || filmCard.title}</h1>
+                  <p className={s.modal__text}> <span className={s.modal__text_accent}>Overview: </span>{filmCard.overview}</p>
+                  <p className={s.list__text}><span className={s.modal__text_accent}>Rating: </span>{Math.round(filmCard.vote_average)}</p>
+                  <p className={s.list__text}><span className={s.modal__text_accent}>Popularity: </span>{filmCard.popularity}</p>
+                  <Link className={s.button} type='button' to={`/movies/${filmCard.id}`} state={{from: location}}>More</Link>
                 </div>
               </div>
             </div>
