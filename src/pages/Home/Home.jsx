@@ -57,7 +57,7 @@ const Home = () => {
                 <img
                   className={s.list__img}
                   src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                  width="200"
+                  width="225"
                   alt={film.title}
                 />
               </div>

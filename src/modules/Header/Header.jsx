@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
+import Sidebar from 'components/light-dark/Sidebar';
 import Loader from 'components/Loader';
 import s from '../Header/header.module.css';
 
@@ -13,12 +14,16 @@ const Header = () => {
       <header className={s.header}>
         <div className={s.wrapper}>
           <nav className={s.nav}>
-            <NavLink to="/" end className={getActiveClassName}>
-              Home
-            </NavLink>
-            <NavLink to="/movies" className={getActiveClassName}>
-              Movies
-            </NavLink>
+            <Sidebar />
+
+            <div>
+              <NavLink to="/" end className={getActiveClassName}>
+                Home
+              </NavLink>
+              <NavLink to="/movies" className={getActiveClassName}>
+                Movies
+              </NavLink>
+            </div>
           </nav>
         </div>
       </header>

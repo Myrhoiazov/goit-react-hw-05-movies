@@ -2,7 +2,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 60px 0;
-  height: 200px;
+  min-height: 200px;
 
   background-image: url('https://www.themoviedb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/bgQUBbZ14hfeb975yZ2YzTnAwen.jpg');
   background-repeat: no-repeat;

@@ -3,7 +3,6 @@ import { lazy } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './modules/Header';
-// import AboutFilms from './pages/AboutFilms';
 import Cast from './pages/AboutFilms/Cast';
 import Reviews from 'pages/AboutFilms/Reviews';
 
