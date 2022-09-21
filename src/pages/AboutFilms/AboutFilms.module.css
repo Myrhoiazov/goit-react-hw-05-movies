@@ -47,7 +47,6 @@
 }
 
 .data__item {
-  padding: 5px 10px;
   margin-right: 10px;
   border: none;
   border-radius: 8px;
@@ -61,6 +60,8 @@
 }
 
 .title {
+  display: inline-block;
+  padding: 5px 10px;
   color: white;
   text-decoration: none;
 }

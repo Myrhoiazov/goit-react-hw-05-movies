@@ -3,11 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import style from './FilmSearch.module.css';
 
-const FilmsSearch = ({ onSubmit }) => {
+const FilmsSearch = () => {
   const [searchParams, setSearchParams] = useSearchParams('');
   const name = searchParams.get('query');
   const [value, setValue] = useState(name ?? '');
-  console.log(name);
 
   const handleChangeValue = event => {
     setValue(event.target.value.trim());
@@ -20,8 +19,6 @@ const FilmsSearch = ({ onSubmit }) => {
       return toast('Ведите свой запрос');
     }
     setSearchParams(state => ({ ...state, query: value }));
-    onSubmit(value);
-
   };
 
   return (

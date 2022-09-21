@@ -2,18 +2,17 @@ import FilmsSearch from '../../components/FilmsSearch/FilmsSearch';
 import { useState, useCallback, useEffect } from 'react';
 import Loader from 'components/Loader';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import s from './Movies.module.css';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
-  const [searchFilms, setSearchFilms] = useState([]);
-  const [loader, setLoader] = useState(false);
-
+  const [searchParams] = useSearchParams('');
+  const query = searchParams.get('query');
   const location = useLocation()
 
-  console.log(location);
+  const [searchFilms, setSearchFilms] = useState([]);
+  const [loader, setLoader] = useState(false);
 
   const serviceApi = useCallback(async () => {
     try {
@@ -29,10 +28,6 @@ const Movies = () => {
     }
   }, [query]);
 
-  const handelSearchValue = query => {
-    setQuery(query);
-  };
-
 
 
   useEffect(() => {
@@ -44,7 +39,7 @@ const Movies = () => {
 
   return (
     <>
-      <FilmsSearch onSubmit={handelSearchValue} />
+      <FilmsSearch />
       {loader && <Loader />}
       {
         <ul className={s.list}>

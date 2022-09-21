@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import axios from 'axios';
@@ -10,7 +10,6 @@ const AboutFilms = () => {
   const [film, setFilm] = useState({});
   const [loader, setLoader] = useState(false);
   const location = useLocation();
-  console.log(location);
 
   const serviceApi = useCallback(async () => {
     try {
@@ -21,7 +20,6 @@ const AboutFilms = () => {
 
       setFilm(response.data);
     } catch (error) {
-      // navigate(`/movies/${moviesId}`)
       toast.error('Что то пошло не так :(');
     } finally {
       setLoader(false);
@@ -85,7 +83,9 @@ const AboutFilms = () => {
                 </Link>
               </li>
             </ul>
+            <Suspense fallback={<Loader />}>
             <Outlet />
+          </Suspense>
           </div>
         </section>
       }

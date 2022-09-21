@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import Loader from 'components/Loader';
 import s from '../Header/header.module.css';
 
 const getActiveClassName = ({ isActive }) => {
@@ -23,7 +25,9 @@ const Header = () => {
 
       <main>
         <div className={s.container}>
-        <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       </main>
     </>

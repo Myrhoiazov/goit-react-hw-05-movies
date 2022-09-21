@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
-// import Modal from '../../components/Modal';
+import Modal from '../../components/Modal';
 import s from './Home.module.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const [filmCard, setFilmsCard] = useState({});
+  const [filmCard, setFilmsCard] = useState('');
+
+  console.log(films);
 
   const serviceApi = useCallback(async () => {
     try {
@@ -26,13 +26,9 @@ const Home = () => {
     }
   }, []);
 
-  // const isShowModal = ev => {
-  //   setFilmsCard(ev.target.src);
-  //   setShowModal(state => !state);
-
-  //   console.log(ev.currentTarget.src);
-  //   // setImgQuery(crs);
-  // };
+  const isShowModal = ev => {
+    setFilmsCard(ev);
+  };
 
   useEffect(() => {
     serviceApi();
@@ -52,33 +48,52 @@ const Home = () => {
       {
         <ul className={s.list}>
           {films.map(film => (
-            <Link key={film.id} >
+            <li
+              key={film.id}
+              onClick={() =>
+                isShowModal(
+                  `https://image.tmdb.org/t/p/w500${film.poster_path}`
+                )
+              }
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w500${film.backdrop_path}`}
                 width="350"
                 alt={film.title}
               />
               <p>{film.original_title || film.original_name}</p>
-            </Link>
+            </li>
           ))}
         </ul>
       }
 
-      {/* {showModal && (
+      {filmCard && (
         <Modal onClose={isShowModal}>
-          <img
-            src={filmCard}
-            alt=''
-            style={{
-              display: 'block',
-              objectFit: 'cover',
-              maxWidth: '100%',
-              width: '100%',
-              height: '100%',
-            }}
-          />
+          <article>
+            <div className="container">
+              <div className={s.card}>
+                <div className="thumb__photo">
+                  <img className='photo'
+                    src={filmCard}
+                    alt=""
+                    style={{
+                      display: 'block',
+                      objectFit: 'cover',
+                      // maxWidth: '100%',
+                      // width: '100%',
+                      // height: '100%',
+                    }}
+                  />
+                </div>
+                <div className='data__content'>
+                  <h1>Title</h1>
+                  <p>text</p>
+                </div>
+              </div>
+            </div>
+          </article>
         </Modal>
-      )} */}
+      )}
     </>
   );
 };

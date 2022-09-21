@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 import style from './Modal.module.css';
 
+
+
 const Modal = ({ onClose, children }) => {
   const handleChangeModal = e => {
     if (e.code === 'Escape') {
       onClose();
     }
   };
+
+  console.log(onClose);
 
   const handleCloseBackdrop = e => {
     if (e.target === e.currentTarget) {
@@ -15,7 +19,7 @@ const Modal = ({ onClose, children }) => {
   };
 
   useEffect(() => {
-    
+
     window.addEventListener('keydown', handleChangeModal);
 
     return () => {
