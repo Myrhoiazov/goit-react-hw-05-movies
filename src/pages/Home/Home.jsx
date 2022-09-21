@@ -12,7 +12,7 @@ const Home = () => {
   const [filmCard, setFilmsCard] = useState({});
   const [isShow, setIsShow] = useState(false);
 
-  const location = useLocation()
+  const location = useLocation();
 
   const serviceApi = useCallback(async () => {
     try {
@@ -28,7 +28,7 @@ const Home = () => {
     }
   }, []);
 
-  const isShowModal = (film) => {
+  const isShowModal = film => {
     setFilmsCard(film);
     setIsShow(state => !state);
     console.log(film);
@@ -54,13 +54,16 @@ const Home = () => {
           {films.map(film => (
             <li key={film.id} onClick={() => isShowModal(film)}>
               <div className={s.list__thumb}>
-              <img className={s.list__img}
-                src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                width="200"
-                alt={film.title}
-              />
+                <img
+                  className={s.list__img}
+                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                  width="200"
+                  alt={film.title}
+                />
               </div>
-              <p className={s.list__title}>{film.original_title || film.original_name}</p>
+              <p className={s.list__title}>
+                {film.original_title || film.original_name}
+              </p>
             </li>
           ))}
         </ul>
@@ -79,11 +82,30 @@ const Home = () => {
                   />
                 </div>
                 <div className={s.data__content}>
-                  <h1 className={s.modal__title}>{filmCard.name || filmCard.title}</h1>
-                  <p className={s.modal__text}> <span className={s.modal__text_accent}>Overview: </span>{filmCard.overview}</p>
-                  <p className={s.list__text}><span className={s.modal__text_accent}>Rating: </span>{Math.round(filmCard.vote_average)}</p>
-                  <p className={s.list__text}><span className={s.modal__text_accent}>Popularity: </span>{filmCard.popularity}</p>
-                  <Link className={s.button} type='button' to={`/movies/${filmCard.id}`} state={{from: location}}>More</Link>
+                  <h1 className={s.modal__title}>
+                    {filmCard.name || filmCard.title}
+                  </h1>
+                  <p className={s.modal__text}>
+                    {' '}
+                    <span className={s.modal__text_accent}>Overview: </span>
+                    {filmCard.overview}
+                  </p>
+                  <p className={s.list__text}>
+                    <span className={s.modal__text_accent}>Rating: </span>
+                    {Math.round(filmCard.vote_average)}
+                  </p>
+                  <p className={s.list__text}>
+                    <span className={s.modal__text_accent}>Popularity: </span>
+                    {filmCard.popularity}
+                  </p>
+                  <Link
+                    className={s.button}
+                    type="button"
+                    to={`/movies/${filmCard.id}`}
+                    state={{ from: location }}
+                  >
+                    More
+                  </Link>
                 </div>
               </div>
             </div>
