@@ -39,7 +39,7 @@ const Home = () => {
   }, [serviceApi, filmCard]);
 
   return (
-    <>
+    <div className={isShow && s.hidden}>
       <div className={s.hero}>
         <h1 className={s.title}>Trending Film today</h1>
         <p className={s.text}>
@@ -104,7 +104,7 @@ const Home = () => {
                     to={`/movies/${filmCard.id}`}
                     state={{ from: location }}
                   >
-                    More
+                    Reed More...
                   </Link>
                 </div>
               </div>
@@ -112,7 +112,7 @@ const Home = () => {
           </article>
         </Modal>
       )}
-    </>
+    </div>
   );
 };
 
