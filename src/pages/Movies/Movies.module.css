@@ -1,3 +1,9 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .searchbar {
   max-width: 1200px;
   width: 100%;
@@ -37,10 +43,14 @@
 
 .title {
   text-decoration: none;
-  color: inherit;
+  color: black;
   max-width: 150px;
   font-size: 14px;
   font-weight: 600;
+}
+
+:global(.dark) .title {
+  color: rgb(255, 255, 255);
 }
 
 .text {
@@ -64,14 +74,15 @@
   text-decoration: none;
 }
 
+.image__wrapper{
+  border-radius: 5px;
+  overflow: hidden;
+  height: 337px;
+}
+
 .image {
   display: block;
   object-fit: cover;
   height: 100%;
 }
 
-.wrapper {
-  border-radius: 5px;
-  overflow: hidden;
-  height: 345px;
-}

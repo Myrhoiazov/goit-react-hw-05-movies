@@ -1,7 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
+import { NavLink} from 'react-router-dom';
+// import { Suspense } from 'react';
 import Sidebar from 'components/light-dark/Sidebar';
-import Loader from 'components/Loader';
+// import Loader from 'components/Loader';
 import s from '../Header/header.module.css';
 
 const getActiveClassName = ({ isActive }) => {
@@ -10,7 +10,7 @@ const getActiveClassName = ({ isActive }) => {
 
 const Header = () => {
   return (
-    <>
+    <div>
       <header className={s.header}>
         <div className={s.wrapper}>
           <nav className={s.nav}>
@@ -28,14 +28,14 @@ const Header = () => {
         </div>
       </header>
 
-      <main>
+      {/* <main >
         <div className={s.container}>
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </div>
-      </main>
-    </>
+      </main> */}
+    </div>
   );
 };
 

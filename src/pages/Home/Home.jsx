@@ -1,10 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Header from '../../modules/Header';
 import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal';
 import s from './Home.module.css';
 import axios from 'axios';
+
+
+
+
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -31,7 +36,6 @@ const Home = () => {
   const isShowModal = film => {
     setFilmsCard(film);
     setIsShow(state => !state);
-    console.log(film);
   };
 
   useEffect(() => {
@@ -39,7 +43,9 @@ const Home = () => {
   }, [serviceApi, filmCard]);
 
   return (
-    <div className={isShow && s.hidden}>
+    <div className={isShow ? s.hidden : null}>
+      <Header />
+      <div className={s.wrapper}>
       <div className={s.hero}>
         <h1 className={s.title}>Trending Film today</h1>
         <p className={s.text}>
@@ -67,7 +73,9 @@ const Home = () => {
             </li>
           ))}
         </ul>
+
       }
+      </div>
 
       {isShow && (
         <Modal onClose={isShowModal}>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import Header  from '../../modules/Header';
 import Loader from '../../components/Loader';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -39,8 +40,9 @@ const AboutFilms = () => {
   return (
     <>
       {loader && <Loader />}
+      <Header/>
       {
-        <section className="">
+        <section>
           <div className={s.container}>
             <Link to={location.state?.from ?? '/movies'} className={s.button}>
               {' '}
@@ -84,8 +86,8 @@ const AboutFilms = () => {
               </li>
             </ul>
             <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
+              <Outlet />
+            </Suspense>
           </div>
         </section>
       }

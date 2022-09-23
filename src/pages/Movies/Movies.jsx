@@ -1,6 +1,7 @@
 import FilmsSearch from '../../components/FilmsSearch/FilmsSearch';
 import { useState, useCallback, useEffect } from 'react';
 import Loader from 'components/Loader';
+import Header from '../../modules/Header';
 import axios from 'axios';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,7 +10,7 @@ import s from './Movies.module.css';
 const Movies = () => {
   const [searchParams] = useSearchParams('');
   const query = searchParams.get('query');
-  const location = useLocation()
+  const location = useLocation();
 
   const [searchFilms, setSearchFilms] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -28,8 +29,6 @@ const Movies = () => {
     }
   }, [query]);
 
-
-
   useEffect(() => {
     if (!query) {
       return;
@@ -39,28 +38,35 @@ const Movies = () => {
 
   return (
     <>
-      <FilmsSearch />
-      {loader && <Loader />}
-      {
-        <ul className={s.list}>
-          {searchFilms.map(film => (
-            <Link  className={s.link} key={film.id} to={`/movies/${film.id}`} state={{from: location}}>
-              <div className={s.wrapper}>
-                <img
-                  className={s.image}
-                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                  width="225"
-                  alt={film.title}
-                />
-              </div>
-              <p className={s.title}>
-                Title: {film.original_title || film.original_name}
-              </p>
-            </Link>
-          ))}
-        </ul>
-
-      }
+      <Header />
+      <div className={s.wrapper}>
+        <FilmsSearch />
+        {loader && <Loader />}
+        {
+          <ul className={s.list}>
+            {searchFilms.map(film => (
+              <Link
+                className={s.link}
+                key={film.id}
+                to={`/movies/${film.id}`}
+                state={{ from: location }}
+              >
+                <div className={s.image__wrapper}>
+                  <img
+                    className={s.image}
+                    src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                    width="225"
+                    alt={film.title}
+                  />
+                </div>
+                <p className={s.title}>
+                  Title: {film.original_title || film.original_name}
+                </p>
+              </Link>
+            ))}
+          </ul>
+        }
+      </div>
     </>
   );
 };
