@@ -1,5 +1,6 @@
 .searchbar {
-  text-align: center;
+  display: flex;
+  align-items: center;
   max-width: 1200px;
   width: 100%;
   min-height: 267px;
@@ -14,24 +15,41 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.form {
+  position: relative;
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .input {
   display: inline-block;
-  min-width: 650px;
-  padding: 12px;
+  width: 100%;
+  padding: 15px;
+  padding-right: 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
 
   color: rgb(3 37 65);
 }
 
 .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
   min-width: 100px;
-  padding: 12px;
+  padding: 15px;
   border: none;
-  border-radius: 8px;
-
-  color: rgb(3 37 65);
-
-  margin-right: 10px;
+  border-radius: 30px;
+  color: white;
   cursor: pointer;
+  background-color: #004d7a;
+
+  transition: all ease 250ms;
+}
+
+.btn:hover {
+  background-color: #036aa6;
+
 }

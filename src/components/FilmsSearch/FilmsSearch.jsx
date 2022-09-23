@@ -24,8 +24,8 @@ const FilmsSearch = () => {
   return (
     <>
       <header className={style.searchbar}>
-        <form className="form" onSubmit={onSubmitValue}>
-          <button type="submit" className={style.btn}>
+        <form className={style.form} onSubmit={onSubmitValue}>
+          <button type={style.btn} className={style.btn}>
             <span className="button-label">Search</span>
           </button>
 
