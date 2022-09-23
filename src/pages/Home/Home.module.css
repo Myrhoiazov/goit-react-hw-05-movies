@@ -79,12 +79,36 @@
   height: 100%;
 }
 
+.modal__container {
+  position: relative;
+}
+
 .card {
   display: flex;
   overflow: hidden;
   box-sizing: border-box;
   padding: 20px;
   background-color: rgb(3 37 65);
+}
+
+.btn__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 50%;
+  border: none;
+  width: 25px;
+  height: 25px;
+  color: white;
+  cursor: pointer;
+  transition: transform ease-in 200ms;
+
+}
+
+.btn__close:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: scale(0.9);
+
 }
 
 .data__content {

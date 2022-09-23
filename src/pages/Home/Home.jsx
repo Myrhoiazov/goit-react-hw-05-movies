@@ -6,7 +6,7 @@ import Loader from '../../components/Loader/Loader';
 import Modal from '../../components/Modal';
 import s from './Home.module.css';
 import axios from 'axios';
-
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 const Home = () => {
   const [films, setFilms] = useState([]);
@@ -43,41 +43,44 @@ const Home = () => {
     <div className={isShow ? s.hidden : null}>
       <Header />
       <div className={s.wrapper}>
-      <div className={s.hero}>
-        <h1 className={s.title}>Trending Film today</h1>
-        <p className={s.text}>
-          Добро пожаловать. Миллионы фильмов, сериалов и людей. Исследуйте
-          сейчас.
-        </p>
-      </div>
+        <div className={s.hero}>
+          <h1 className={s.title}>Trending Film today</h1>
+          <p className={s.text}>
+            Добро пожаловать. Миллионы фильмов, сериалов и людей. Исследуйте
+            сейчас.
+          </p>
+        </div>
 
-      {loader && <Loader />}
-      {
-        <ul className={s.list}>
-          {films.map(film => (
-            <li key={film.id} onClick={() => isShowModal(film)}>
-              <div className={s.list__thumb}>
-                <img
-                  className={s.list__img}
-                  src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                  width="230"
-                  alt={film.title}
-                />
-              </div>
-              <p className={s.list__title}>
-                {film.original_title || film.original_name}
-              </p>
-            </li>
-          ))}
-        </ul>
-
-      }
+        {loader && <Loader />}
+        {
+          <ul className={s.list}>
+            {films.map(film => (
+              <li key={film.id} onClick={() => isShowModal(film)}>
+                <div className={s.list__thumb}>
+                  <img
+                    className={s.list__img}
+                    src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+                    width="230"
+                    alt={film.title}
+                  />
+                </div>
+                <p className={s.list__title}>
+                  {film.original_title || film.original_name}
+                </p>
+              </li>
+            ))}
+          </ul>
+        }
       </div>
 
       {isShow && (
         <Modal onClose={isShowModal}>
-          <article>
-            <div className="container">
+          <article className={s.modal__container}>
+            <AiOutlineCloseCircle
+              className={s.btn__close}
+              onClick={() => setIsShow(state => !state)}
+            />
+            <div>
               <div className={s.card}>
                 <div className={s.thumb__photo}>
                   <img
