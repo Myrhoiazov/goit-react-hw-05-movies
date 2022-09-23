@@ -8,9 +8,6 @@ import s from './Home.module.css';
 import axios from 'axios';
 
 
-
-
-
 const Home = () => {
   const [films, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
@@ -63,7 +60,7 @@ const Home = () => {
                 <img
                   className={s.list__img}
                   src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-                  width="225"
+                  width="230"
                   alt={film.title}
                 />
               </div>

@@ -65,8 +65,9 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0;
-  padding: 40px 0;
+  padding: 20px 0;
 
+  text-decoration: none;
   gap: 10px;
 }
 
@@ -74,10 +75,16 @@
   text-decoration: none;
 }
 
-.image__wrapper{
+.image__wrapper {
   border-radius: 5px;
   overflow: hidden;
   height: 337px;
+}
+
+.image__wrapper:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .image {
@@ -85,4 +92,3 @@
   object-fit: cover;
   height: 100%;
 }
-
