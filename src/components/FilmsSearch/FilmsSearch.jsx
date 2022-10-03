@@ -1,25 +1,19 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import style from './FilmSearch.module.css';
 
-const FilmsSearch = () => {
+const FilmsSearch = ({ onSubmitValue }) => {
   const [searchParams, setSearchParams] = useSearchParams('');
   const name = searchParams.get('query');
   const [value, setValue] = useState(name ?? '');
 
   const handleChangeValue = event => {
-    setValue(event.target.value.trim());
+    const cleanValue = event.target.value.trim();
+
+    setValue(cleanValue);
+    setSearchParams(cleanValue === '' ? {} : { query: cleanValue });
   };
 
-  const onSubmitValue = ev => {
-    ev.preventDefault();
-
-    if (value === '') {
-      return toast('Ведите свой запрос');
-    }
-    setSearchParams(state => ({ ...state, query: value }));
-  };
 
   return (
     <>

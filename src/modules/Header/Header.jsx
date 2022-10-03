@@ -1,4 +1,4 @@
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import { Suspense } from 'react';
 import Sidebar from 'components/light-dark/Sidebar';
 // import Loader from 'components/Loader';
@@ -20,7 +20,10 @@ const Header = () => {
               <NavLink to="/" end className={getActiveClassName}>
                 Home
               </NavLink>
-              <NavLink to="/movies" className={getActiveClassName}>
+              <NavLink
+                to='/movies'
+                className={getActiveClassName}
+              >
                 Movies
               </NavLink>
             </div>

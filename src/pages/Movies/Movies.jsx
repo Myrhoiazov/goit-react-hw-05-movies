@@ -1,5 +1,5 @@
 import FilmsSearch from '../../components/FilmsSearch/FilmsSearch';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Loader from 'components/Loader';
 import Header from '../../modules/Header';
 import axios from 'axios';
@@ -9,13 +9,13 @@ import s from './Movies.module.css';
 
 const Movies = () => {
   const [searchParams] = useSearchParams('');
-  const query = searchParams.get('query');
+  const query = searchParams.get('query') ?? '';
   const location = useLocation();
 
   const [searchFilms, setSearchFilms] = useState([]);
   const [loader, setLoader] = useState(false);
 
-  const serviceApi = useCallback(async () => {
+  const serviceApi = async () => {
     try {
       setLoader(true);
       const response = await axios.get(
@@ -27,20 +27,33 @@ const Movies = () => {
     } finally {
       setLoader(false);
     }
-  }, [query]);
+  };
+
+  const onSubmitValue = ev => {
+    ev.preventDefault();
+
+    const cleanValue = ev.target.elements.name.value.trim();
+
+    if (!cleanValue) {
+      return toast('Ведите свой запрос');
+    }
+
+    serviceApi();
+  };
 
   useEffect(() => {
     if (!query) {
       return;
     }
+
     serviceApi();
-  }, [query, serviceApi]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <Header />
       <div className={s.wrapper}>
-        <FilmsSearch />
+        <FilmsSearch onSubmitValue={onSubmitValue} />
         {loader && <Loader />}
         {
           <ul className={s.list}>
