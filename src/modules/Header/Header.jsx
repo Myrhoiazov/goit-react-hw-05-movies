@@ -1,7 +1,5 @@
-import { NavLink } from 'react-router-dom';
-// import { Suspense } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import Sidebar from 'components/light-dark/Sidebar';
-// import Loader from 'components/Loader';
 import s from '../Header/header.module.css';
 
 const getActiveClassName = ({ isActive }) => {
@@ -17,11 +15,11 @@ const Header = () => {
             <Sidebar />
 
             <div>
-              <NavLink to="/" end className={getActiveClassName}>
+              <NavLink to='/' end className={getActiveClassName}>
                 Home
               </NavLink>
               <NavLink
-                to='/movies'
+                to="/movies"
                 className={getActiveClassName}
               >
                 Movies
@@ -30,14 +28,6 @@ const Header = () => {
           </nav>
         </div>
       </header>
-
-      {/* <main >
-        <div className={s.container}>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </div>
-      </main> */}
     </div>
   );
 };
